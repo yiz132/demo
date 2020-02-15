@@ -16,6 +16,10 @@
     "@angular/common": "~8.1.2",
     "@angular/core": "~8.1.2",
     "@angular/forms": "~8.1.2",
+<<<<<<< HEAD
+=======
+    "@angular/http": "5.2.11",
+>>>>>>> 1626674ccd8c599484ddd0780d4dc4be52a30296
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
@@ -30,8 +34,13 @@
     "core-js": "^2.5.4",
     "echarts": "^4.6.0",
     "ion-multi-picker": "^2.1.3",
+    "ng2-cookies": "~1.0.12",
     "ngx-echarts": "^3.0.0",
+<<<<<<< HEAD
     "rxjs": "~6.5.1",
+=======
+    "rxjs": "^5.5.12",
+>>>>>>> 1626674ccd8c599484ddd0780d4dc4be52a30296
     "silly-datetime": "^0.1.2",
     "tslib": "^1.9.0",
     "webpack": "^4.41.6",
@@ -40,7 +49,7 @@
   },
   "devDependencies": {
     "@angular-devkit/architect": "~0.801.2",
-    "@angular-devkit/build-angular": "~0.801.2",
+    "@angular-devkit/build-angular": "^0.900.2",
     "@angular-devkit/core": "~8.1.2",
     "@angular-devkit/schematics": "~8.1.2",
     "@angular/cli": "~8.1.2",
