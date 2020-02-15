@@ -1,5 +1,6 @@
 package steelhacks.covid19.covid19.Controller;
 
+import com.google.api.Http;
 import common.ResultBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import steelhacks.covid19.covid19.Utils.UserUtil;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.html.StyleSheet;
 import javax.validation.Valid;
 
 @RestController
@@ -30,25 +32,41 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResultBase doLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+    public User doLogin(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
-        ResultBase rs=new ResultBase();
+
         if (userService.checkLogin(username,password)) {
             User user = userService.findByUsernameAndPassword(username, password);
             UserUtil.saveUserToSession(session, user);
-            rs.setToSuccess("login succeed");
-            return rs;
+            return user;
         }
-        rs.setToFail("incorrect username or password");
-        return rs;
+        return null;
+
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public ResultBase logout(HttpSession session, HttpServletResponse response) {
-        UserUtil.deleteUserFromSession(session);
-        ResultBase rs=new ResultBase();
-        rs.setToSuccess("logout succeed");
-        return rs;
+    public Boolean logout(HttpSession session, HttpServletResponse response) {
+        return UserUtil.deleteUserFromSession(session);
+    }
+
+   // @RequestMapping(value = "/getLocation", method = RequestMethod.POST)
+    public double getLongitude(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+        String email = request.getParameter("email");
+        return UserService.getLongitude(email);
+
+    }
+
+    public double getLatitude(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+        String email = request.getParameter("email");
+        return UserService.getLatitude(email);
+
+    }
+
+    public Integer getPatientsByDistance(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+        Integer distance = Integer.parseInt(request.getParameter("distance"));
+        Double longitude = Double.parseDouble(request.getParameter("longitude"));
+        Double latitude = Double.parseDouble(request.getParameter("latitude"));
+        return UserService.getPatientsByDistance(distance, longitude, latitude);
     }
 }
