@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @RestController
-public class LoginController {
+public class UserController {
 
     @Autowired
     UserService userService;
