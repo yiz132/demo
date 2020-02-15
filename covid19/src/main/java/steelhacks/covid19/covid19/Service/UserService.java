@@ -19,5 +19,7 @@ public interface UserService {
 
     double getLatitude(String email);
 
-    List<User> getPatientsByDistance(Integer referenceDistance, String email, Double longitude, Double latitude);
+    List<User> getPatientsByDistance(String email, Integer Distance);
+
+    List<User> findPatientsInRang(Integer from, Integer to);
 }

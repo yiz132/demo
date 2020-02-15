@@ -59,11 +59,8 @@ public class UserController {
         return userService.getLatitude(email);
     }
 
-    public List<User> getPatientsByDistance(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-        String email = request.getParameter("email");
-        Integer referenceDistance = Integer.parseInt(request.getParameter("distance"));
-        Double longitude = Double.parseDouble(request.getParameter("longitude"));
-        Double latitude = Double.parseDouble(request.getParameter("latitude"));
-        return userService.getPatientsByDistance(referenceDistance, email, longitude, latitude);
+    @RequestMapping(path="/aggregation/byDistance")
+    public List<User> getPatientsByDistance(@RequestParam String email,@RequestParam Integer distance) {
+        return userService.getPatientsByDistance(email, distance);
     }
 }

@@ -48,13 +48,23 @@ public class UserServiceImpl implements UserService {
 
 
     @Transactional
-    public List<User> getPatientsByDistance(Integer referenceDistance, String email, Double longitude, Double latitude) {
-        List l = new ArrayList<User>();
+    public List<User> getPatientsByDistance(String email, Integer distance) {
+        List<User> l = new ArrayList<>();
+        User center_user = userDao.findByEmail(email);
         for(User user: userDao.findAllUser()){
             if(user.getEmail().equals(email)) continue;
-            if(getDistance(longitude, latitude, user.getLongitude(), user.getLatitude()) <= referenceDistance) l.add(user);
+            if(getDistance(center_user.getLongitude(),center_user.getLatitude(), user.getLongitude(), user.getLatitude()) <= distance) l.add(user);
         }
         return l;
+    }
+
+    @Override
+    public List<User> findPatientsInRang(Integer from, Integer to) {
+        List<User> res = new ArrayList<>();
+        for (User user : userDao.findAllUser()) {
+            if (user.getAge() >= from && user.getAge() <= to) res.add(user);
+        }
+        return res;
     }
 
     @Transactional
