@@ -1,6 +1,5 @@
 package steelhacks.covid19.covid19.Controller;
 
-import common.ResultBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import javax.xml.transform.Result;
 
 @RestController
 @RequestMapping(path="/doctor")
 public class DoctorController {
+
     @Autowired
     private DoctorService doctorService;
 

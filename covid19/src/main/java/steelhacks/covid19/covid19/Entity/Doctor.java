@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 import javax.persistence.Entity;
 
-@Entity
 @Document(collection="doctors")
 public class Doctor {
     @Id
@@ -20,7 +19,7 @@ public class Doctor {
     @Field("name")
     private String name;
 
-    @Column(columnDefinition="VARCHAR(64) NOT NULL")
+    @Field("VARCHAR(64) NOT NULL")
     private String password;
 
 

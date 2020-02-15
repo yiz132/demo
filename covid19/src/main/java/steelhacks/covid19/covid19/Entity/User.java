@@ -7,27 +7,26 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import javax.persistence.*;
 
 
-@Entity
 @Document(collection="user")
 public class User {
 
     @Id
-    @Field("BIGINT(20)")
+    @Field("id")
     private Integer id;
 
-    @Field("VARCHAR(32) NOT NULL")
+    @Field("email")
     private String email;
 
-    @Field("VARCHAR(64) NOT NULL")
+    @Field("password")
     private String password;
 
-    @Field("DOUBLE NOT NULL")
+    @Field("longitude")
     private double longitude;
 
-    @Field("DOUBLE NOT NULL")
+    @Field("latitude")
     private Double latitude;
 
-    @Field("INT NOT NULL'")
+    @Field("age")
     private Integer age;
 
 
