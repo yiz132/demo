@@ -3,12 +3,14 @@ package steelhacks.covid19.covid19.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import steelhacks.covid19.covid19.Entity.Doctor;
+import steelhacks.covid19.covid19.Entity.User;
 import steelhacks.covid19.covid19.Service.DoctorService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(path="/doctor")
@@ -35,5 +37,14 @@ public class DoctorController {
         if (! doctorService.validate(email,password)) return null;
         return doctorService.findDoctorByEmail(email);
     }
+
+    public List<User> getPatientsByDistance(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+        String email = request.getParameter("email");
+        Integer referenceDistance = Integer.parseInt(request.getParameter("distance"));
+        Double longitude = Double.parseDouble(request.getParameter("longitude"));
+        Double latitude = Double.parseDouble(request.getParameter("latitude"));
+        return doctorService.getPatientsByDistance(referenceDistance, longitude, latitude);
+    }
+
 
 }
