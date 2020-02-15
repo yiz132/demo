@@ -1,13 +1,14 @@
 package steelhacks.covid19.covid19.Dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import steelhacks.covid19.covid19.Entity.User;
 import org.springframework.stereotype.Repository;
-import steelhacks.covid19.covid19.Entity.Doctor;
+
 
 @Repository
-public interface DoctorDao extends JpaRepository<Doctor, Integer> {
+public interface DoctorRepository extends DoctorRepository<User, Integer> {
+    public User findByUsernameAndPassword(String username, String password);
 
-    Doctor findDoctorByEmail(String email);
-
-    Doctor findByEmail(String email);
+    public User  findByUsername(String username);
+    public User getOne(Integer id);
 }
