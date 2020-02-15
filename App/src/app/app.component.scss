@@ -1,0 +1,22 @@
+body{
+    color:rgb(66, 66, 66);
+}
+
+.logo{
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    background-image: url("/assets/images/Ray.png") ;
+    background-size: cover;
+    top:-20px;
+    outline: none;
+}
+
+.userPhoto{
+    
+        width:70px;
+        border-radius:100%;
+        margin-top: 10px;
+   
+}
+
