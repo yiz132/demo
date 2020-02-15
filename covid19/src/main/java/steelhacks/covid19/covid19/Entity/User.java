@@ -13,7 +13,7 @@ public class User {
     @Id
     @GeneratedValue
     private Integer id;
-
+    private String name;
     private String email;
 
     private String password;
@@ -43,7 +43,9 @@ public class User {
         this.status = status;
     }
 
+    public String getName(){return this.name;}
 
+    public void setName(String name){this.name = name;}
 
     public Integer getUserId() {
         return id;
@@ -60,9 +62,14 @@ public class User {
         this.email = email;
     }
     public Integer getAge() {return age;}
+    public void setAge(int age) {this.age = age;}
 
-    public Double getLongitude() { return longitude;}
-    public Double getLatitude() { return latitude;}
-    public Double getTemperature() {return temperature;}
+    public double getLongitude() { return longitude;}
+    public void setLongitude(double longitude){this.longitude = longitude;}
+    public double getLatitude() { return latitude;}
+    public void setLatitude(double latitude) {this.latitude = latitude;}
+    public double getTemperature() {return temperature;}
+    public void setTemperature(double temperature){this.temperature = temperature;}
     public Integer getStatus() {return status;}
+    public void setStatus(int status){this.status = status;}
 }
