@@ -1,10 +1,7 @@
 package steelhacks.covid19.covid19.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import steelhacks.covid19.covid19.Entity.Doctor;
 import steelhacks.covid19.covid19.Service.DoctorService;
 
@@ -21,7 +18,11 @@ public class DoctorController {
 
     @PostMapping(path="/register")
     public @ResponseBody
-    Doctor register(@Valid Doctor doctor){
+    Doctor register(@RequestParam String email, @RequestParam String password){
+        Doctor doctor = new Doctor();
+        doctor.setEmail(email);
+        doctor.setPassword(password);
+
         doctorService.save(doctor);
         return doctor;
     }

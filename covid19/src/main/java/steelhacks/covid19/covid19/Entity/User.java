@@ -1,9 +1,11 @@
 package steelhacks.covid19.covid19.Entity;
 
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
-
+@Component
 @Entity
 @Table(name="Users")
 public class User {

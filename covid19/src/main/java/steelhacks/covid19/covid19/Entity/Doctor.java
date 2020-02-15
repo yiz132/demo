@@ -1,9 +1,12 @@
 package steelhacks.covid19.covid19.Entity;
 
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
 import javax.persistence.Entity;
+@Component
 @Entity
 @Table(name = "Doctors")
 public class Doctor {
@@ -16,14 +19,6 @@ public class Doctor {
     private String name;
 
     private String password;
-
-
-    public Doctor(){}
-    public Doctor(Integer id, String email, String password) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-    }
 
     public Integer getId() {
         return id;
