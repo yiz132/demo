@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 
 @Entity
-@Document("doctor")
+@Document("doctors")
 public class Doctor {
     @Id
 

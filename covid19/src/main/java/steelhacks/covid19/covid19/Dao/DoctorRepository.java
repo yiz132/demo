@@ -1,5 +1,4 @@
 package steelhacks.covid19.covid19.Dao;
-
 import org.springframework.data.mongodb.repository.MongoRepository;
 import steelhacks.covid19.covid19.Entity.Doctor;
 import org.springframework.stereotype.Repository;

@@ -2,10 +2,12 @@ package steelhacks.covid19.covid19.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import steelhacks.covid19.covid19.Dao.DoctorRepository;
 import steelhacks.covid19.covid19.Entity.Doctor;
 
 @Service
+@Transactional
 public class DoctorService {
     @Autowired
     private DoctorRepository doctorRepository;
