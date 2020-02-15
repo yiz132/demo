@@ -8,10 +8,9 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 
 @Entity
-@Document("doctors")
+@Document(collection="doctors")
 public class Doctor {
     @Id
-
     @Field("id")
     private Integer id;
 

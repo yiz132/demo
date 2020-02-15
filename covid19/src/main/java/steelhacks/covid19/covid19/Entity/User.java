@@ -8,12 +8,10 @@ import javax.persistence.*;
 
 
 @Entity
-@Document("user")
+@Document(collection="user")
 public class User {
 
     @Id
-
-
     @Field("BIGINT(20)")
     private Integer id;
 

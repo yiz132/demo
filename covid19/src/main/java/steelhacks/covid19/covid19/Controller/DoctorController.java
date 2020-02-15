@@ -21,14 +21,14 @@ public class DoctorController {
     @Autowired
     private DoctorService doctorService;
 
-    @PostMapping(value="/register")
+    @PostMapping(path="/register")
     public @ResponseBody
     Doctor register(@Valid Doctor doctor){
         doctorService.save(doctor);
         return doctor;
     }
 
-    @PostMapping(value="/login")
+    @PostMapping(path="/login")
     public @ResponseBody
     Doctor login(HttpServletRequest request, HttpServletResponse response, HttpSession session){
         String email = request.getParameter("email");

@@ -18,12 +18,13 @@ import javax.swing.text.html.StyleSheet;
 import javax.validation.Valid;
 
 @RestController
+@RequestMapping(path="/user")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    @PostMapping(value = "/register")
+    @PostMapping(path = "/register")
     public ResultBase doReg(@Valid User user) {
         userService.save(user);
         ResultBase rs=new ResultBase();
@@ -31,7 +32,7 @@ public class UserController {
         return rs;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
     public User doLogin(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
@@ -45,24 +46,24 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    @RequestMapping(path = "/logout", method = RequestMethod.GET)
     public Boolean logout(HttpSession session, HttpServletResponse response) {
         return UserUtil.deleteUserFromSession(session);
     }
 
-   @RequestMapping(value = "/getLocation", method = RequestMethod.POST)
+   @RequestMapping(path = "/getLocation", method = RequestMethod.POST)
     public double getLongitude(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
         return userService.getLongitude(email);
 
     }
-    @RequestMapping(value = "/getLocation", method = RequestMethod.POST)
+    @RequestMapping(path = "/getLocation", method = RequestMethod.POST)
     public double getLatitude(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
         return userService.getLatitude(email);
 
     }
-    @RequestMapping(value = "/getLocation", method = RequestMethod.POST)
+    @RequestMapping(path = "/getLocation", method = RequestMethod.POST)
 
     public Integer getPatientsByDistance(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
