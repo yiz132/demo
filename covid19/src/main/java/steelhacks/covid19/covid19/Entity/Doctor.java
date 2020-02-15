@@ -20,10 +20,6 @@ public class Doctor {
 
     private String password;
 
-    private double longitude;
-
-    private double latitude;
-
     public Integer getId() {
         return id;
     }
@@ -56,21 +52,5 @@ public class Doctor {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
     }
 }

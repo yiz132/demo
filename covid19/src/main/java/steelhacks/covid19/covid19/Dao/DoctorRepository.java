@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import steelhacks.covid19.covid19.Entity.Doctor;
 
 @Repository
-public interface DoctorRepository extends CrudRepository<Doctor,Integer> {
+public interface DoctorRepository extends CrudRepository<Doctor,String> {
 
     Doctor findByEmail(String email);
 }
