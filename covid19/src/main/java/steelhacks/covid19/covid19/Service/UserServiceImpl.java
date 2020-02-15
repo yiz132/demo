@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -45,13 +48,13 @@ public class UserServiceImpl implements UserService {
 
 
     @Transactional
-    public Integer getPatientsByDistance(Integer referenceDistance, String email, Double longitude, Double latitude) {
-        Integer i = 0;
+    public List<User> getPatientsByDistance(Integer referenceDistance, String email, Double longitude, Double latitude) {
+        List l = new ArrayList<User>();
         for(User user: userDao.findAllUser()){
             if(user.getEmail().equals(email)) continue;
-            if(getDistance(longitude, latitude, user.getLongitude(), user.getLatitude()) <= referenceDistance) i++;
+            if(getDistance(longitude, latitude, user.getLongitude(), user.getLatitude()) <= referenceDistance) l.add(user);
         }
-        return i;
+        return l;
     }
 
     @Transactional
