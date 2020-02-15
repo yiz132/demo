@@ -11,7 +11,7 @@ public interface UserService {
 
     boolean checkLogin(String username, String password);
 
-    User findByUsernameAndPassword(String username, String password);
+    User findByEmail(String email);
 
     double getLongitude(String email);
 

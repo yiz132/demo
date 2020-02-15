@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import steelhacks.covid19.covid19.Entity.User;
 import steelhacks.covid19.covid19.Service.UserService;
-import steelhacks.covid19.covid19.Service.UserServiceImpl;
 import steelhacks.covid19.covid19.Utils.UserUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,11 +23,9 @@ public class UserController {
     UserService userService;
 
     @PostMapping(path = "/register")
-    public ResultBase doReg(@Valid User user) {
+    public User doReg(@Valid User user) {
         userService.save(user);
-        ResultBase rs=new ResultBase();
-        rs.setToSuccess();
-        return rs;
+        return user;
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
@@ -37,7 +34,7 @@ public class UserController {
         String password=request.getParameter("password");
 
         if (userService.checkLogin(username,password)) {
-            User user = userService.findByUsernameAndPassword(username, password);
+            User user = userService.findByEmail(username);
             UserUtil.saveUserToSession(session, user);
             return user;
         }
@@ -50,19 +47,17 @@ public class UserController {
         return UserUtil.deleteUserFromSession(session);
     }
 
-   @RequestMapping(path = "/getLocation", method = RequestMethod.POST)
+   @RequestMapping(path = "/getLongitude", method = RequestMethod.POST)
     public double getLongitude(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
         return userService.getLongitude(email);
 
     }
-    @RequestMapping(path = "/getLocation", method = RequestMethod.POST)
+    @RequestMapping(path = "/getLatitude", method = RequestMethod.POST)
     public double getLatitude(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
         return userService.getLatitude(email);
-
     }
-    @RequestMapping(path = "/getLocation", method = RequestMethod.POST)
 
     public Integer getPatientsByDistance(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");

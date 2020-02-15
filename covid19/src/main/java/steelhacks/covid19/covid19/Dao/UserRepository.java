@@ -1,19 +1,20 @@
 package steelhacks.covid19.covid19.Dao;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import steelhacks.covid19.covid19.Entity.User;
 
 import java.util.List;
 
 @Repository
-public interface UserRepository extends MongoRepository<User, String> {
-
-    User findByUsernameAndPassword(String username, String password);
+public interface UserRepository extends CrudRepository<User, String> {
 
     User findByEmail(String email);
 
-    User getOne(Integer id);
 
-    List<User> find();
+    @Query(value="SELECT * FROM Users", nativeQuery = true)
+    List<User> findAllUser();
 }

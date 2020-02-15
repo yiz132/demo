@@ -11,19 +11,19 @@ public class DoctorServiceImpl implements DoctorService{
     @Autowired
     private DoctorRepository doctorRepository;
 
-    @Transactional
+    @Override
     public void save(Doctor doctor){
         doctorRepository.save(doctor);
     }
 
-    @Transactional
+    @Override
     public boolean validate(String email, String password) {
         Doctor doctor = doctorRepository.findByEmail(email);
         if (doctor == null) return false;
         return doctor.getPassword().equals(password);
     }
 
-    @Transactional
+    @Override
     public Doctor findDoctorByEmail(String email) {
         return doctorRepository.findByEmail(email);
     }

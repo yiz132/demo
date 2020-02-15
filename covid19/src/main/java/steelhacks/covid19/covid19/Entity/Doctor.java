@@ -1,25 +1,20 @@
 package steelhacks.covid19.covid19.Entity;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 
 import javax.persistence.Entity;
-
-@Document(collection="doctors")
+@Entity
+@Table(name = "Doctors")
 public class Doctor {
     @Id
-    @Field("id")
+    @GeneratedValue
     private Integer id;
 
-    @Field("email")
     private String email;
 
-    @Field("name")
     private String name;
 
-    @Field("VARCHAR(64) NOT NULL")
     private String password;
 
 
@@ -41,6 +36,8 @@ public class Doctor {
     public String getEmail() {
         return email;
     }
+
+    public void setEmail(String email) {this.email = email;}
 
     public void setUsername(String email) {
         this.email = email;

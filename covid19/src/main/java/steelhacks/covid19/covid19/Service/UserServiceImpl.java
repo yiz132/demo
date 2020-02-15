@@ -13,22 +13,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userDao;
 
-    @Transactional
-    public boolean checkLogin(String username, String password) {
-        User user = userDao.findByUsernameAndPassword(username,
-                password);
-        return user != null;
+    @Override
+    public boolean checkLogin(String email, String password) {
+        User user = userDao.findByEmail(email);
+        return user.getPassword().equals(password);
     }
 
 
-    @Transactional
-    public User findByUsernameAndPassword(String username, String password){
-        User user = userDao.findByUsernameAndPassword(username, password);
-        return user;
-    }
-
-
-    @Transactional
+    @Override
     public User findByEmail(String email){
         return userDao.findByEmail(email);
     }
@@ -37,11 +29,6 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void save(User user) {
         userDao.save(user);
-    }
-
-    @Transactional
-    public User findOne(Integer id) {
-        return userDao.getOne(id);
     }
 
     @Transactional
@@ -60,7 +47,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public Integer getPatientsByDistance(Integer referenceDistance, String email, Double longitude, Double latitude) {
         Integer i = 0;
-        for(User user: userDao.find()){
+        for(User user: userDao.findAllUser()){
             if(user.getEmail().equals(email)) continue;
             if(getDistance(longitude, latitude, user.getLongitude(), user.getLatitude()) <= referenceDistance) i++;
         }

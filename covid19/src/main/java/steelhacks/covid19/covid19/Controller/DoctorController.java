@@ -16,7 +16,6 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(path="/doctor")
 public class DoctorController {
-
     @Autowired
     private DoctorService doctorService;
 
