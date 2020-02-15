@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path="/user")
 public class UserController {
