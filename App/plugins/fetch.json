@@ -1,0 +1,10 @@
+{
+  "cordova-plugin-unique-device-id2": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-unique-device-id2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "RayApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
