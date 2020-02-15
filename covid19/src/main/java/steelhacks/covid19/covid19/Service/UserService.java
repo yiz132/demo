@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import steelhacks.covid19.covid19.Entity.User;
 
+import java.util.List;
+
 
 public interface UserService {
     void save(User user);
@@ -17,5 +19,5 @@ public interface UserService {
 
     double getLatitude(String email);
 
-    Integer getPatientsByDistance(Integer referenceDistance, String email, Double longitude, Double latitude);
+    List<User> getPatientsByDistance(Integer referenceDistance, String email, Double longitude, Double latitude);
 }
