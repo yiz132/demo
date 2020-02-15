@@ -50,23 +50,25 @@ public class UserController {
         return UserUtil.deleteUserFromSession(session);
     }
 
-   // @RequestMapping(value = "/getLocation", method = RequestMethod.POST)
+   @RequestMapping(value = "/getLocation", method = RequestMethod.POST)
     public double getLongitude(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
-        return UserService.getLongitude(email);
+        return userService.getLongitude(email);
 
     }
-
+    @RequestMapping(value = "/getLocation", method = RequestMethod.POST)
     public double getLatitude(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
-        return UserService.getLatitude(email);
+        return userService.getLatitude(email);
 
     }
+    @RequestMapping(value = "/getLocation", method = RequestMethod.POST)
 
     public Integer getPatientsByDistance(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-        Integer distance = Integer.parseInt(request.getParameter("distance"));
+        String email = request.getParameter("email");
+        Integer referenceDistance = Integer.parseInt(request.getParameter("distance"));
         Double longitude = Double.parseDouble(request.getParameter("longitude"));
         Double latitude = Double.parseDouble(request.getParameter("latitude"));
-        return UserService.getPatientsByDistance(distance, longitude, latitude);
+        return userService.getPatientsByDistance(referenceDistance, email, longitude, latitude);
     }
 }

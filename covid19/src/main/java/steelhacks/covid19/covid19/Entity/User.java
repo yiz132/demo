@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "customers")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -15,79 +15,43 @@ public class User {
     private Integer id;
 
     @Column(columnDefinition="VARCHAR(32) NOT NULL")
-    private String username;
-
-    @Column(columnDefinition="VARCHAR(255) DEFAULT NULL")
-    private String cname;
-
-    @Column(columnDefinition="VARCHAR(255) DEFAULT NULL")
-    private String ckind;
-
-    @Column(columnDefinition="INT(11) DEFAULT NULL'")
-    private Integer aid;  //address id
+    private String email;
 
     @Column(columnDefinition="VARCHAR(64) NOT NULL")
     private String password;
 
-    /**
-     * 订单
-     */
-   // @OneToMany(mappedBy = "user")
-  //  private List<Order> orders;
+    @Column(columnDefinition="DOUBLE NOT NULL")
+    private double longitude;
+
+    @Column(columnDefinition="DOUBLE NOT NULL")
+    private Double latitude;
+
+    @Column(columnDefinition="INT NOT NULL'")
+    private Integer age;
 
 
     public User(){}
-    public User(Integer id, String username, String password) {
+    public User(Integer id, String email, String password, double longitude, double latitude, Integer age) {
         this.id = id;
-        this.username = username;
+        this.email = email;
         this.password = password;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.age = age;
     }
 
-    public Integer getCid() {
+
+
+    public Integer getUserId() {
         return id;
-    }
-
-    public void setCid(Integer id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getCname() {
-        return cname;
-    }
-
-    public void setCname(String cname) {
-        this.cname = cname;
-    }
-
-    public String getCkind() {
-        return ckind;
-    }
-
-    public void setCkind(String ckind) {
-        this.ckind = ckind;
-    }
-
-    public Integer getAid() {
-        return aid;
-    }
-
-    public void setAid(Integer aid) {
-        this.aid = aid;
     }
 
     public String getPassword() {
         return password;
     }
+    public String getEmail() {return email;}
+    public Integer getAge() {return age;}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public Double getLongitude() { return longitude;}
+    public Double getLatitude() { return latitude;}
 }

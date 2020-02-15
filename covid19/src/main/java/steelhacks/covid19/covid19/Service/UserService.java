@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 
 @Service
 @Transactional
@@ -25,8 +28,8 @@ public class UserService {
         return user;
     }
 
-    public User findByUsername(String username){
-        return userDao.findByUsername(username);
+    public User findByEmail(String email){
+        return userDao.findByEmail(email);
     }
 
     public void save(User user) {
@@ -37,25 +40,28 @@ public class UserService {
         return userDao.getOne(id);
     }
 
-    public User countAgeRange(Integer age_min, Integer age_max) { return userDao.getCountAgeRange(age_min, age_max) }
-    public static double getLongitude(String email) {
+    public double getLongitude(String email) {
+        return userDao.findByEmail(email).getLongitude();
+
 
     }
 
-    public static double getLatitude(String email) {
+    public double getLatitude(String email) {
+        return userDao.findByEmail(email).getLatitude();
     }
 
-    public static Integer getPatientsByDistance(Integer referenceDistance, Double longitude, Double latitude) {
+    public Integer getPatientsByDistance(Integer referenceDistance, String email, Double longitude, Double latitude) {
         Integer i = 0;
-        for(User user: users){
-            if(getDistance(user.longitude, user.latitude) <= referenceDistance) i++;
+        for(User user: userDao.find()){
+            if(user.getEmail() == email) continue;
+            if(getDistance(longitude, latitude, user.getLongitude(), user.getLatitude()) <= referenceDistance) i++;
         }
         return i;
     }
-    public static Double getDistance(Double longitude, Double latitude){
+    public  Double getDistance(Double standardLongitude, Double standardLatitude, Double longitude, Double latitude){
         double STATUTE_MILES_PER_NAUTICAL_MILE = 1.15077945;
-        double lat1 = Math.toRadians(User.latitude);
-        double lon1 = Math.toRadians(User.longitude);
+        double lat1 = Math.toRadians(standardLatitude);
+        double lon1 = Math.toRadians(standardLongitude);
         double lat2 = Math.toRadians(latitude);
         double lon2 = Math.toRadians(longitude);
 
