@@ -24,15 +24,23 @@ public class User {
 
     private Integer age;
 
+    private Double temperature;
 
-    public User(){}
-    public User(Integer id, String email, String password, double longitude, double latitude, Integer age) {
+    private Integer status; //0--normal, 1--patient, 2--doctor
+
+
+    public User(){
+        this.status = 0;
+    }
+    public User(Integer id, String email, String password, double longitude, double latitude, Integer age, Double temperature, Integer status) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.longitude = longitude;
         this.latitude = latitude;
         this.age = age;
+        this.temperature = temperature;
+        this.status = status;
     }
 
 
@@ -55,4 +63,6 @@ public class User {
 
     public Double getLongitude() { return longitude;}
     public Double getLatitude() { return latitude;}
+    public Double getTemperature() {return temperature;}
+    public Integer getStatus() {return status;}
 }
