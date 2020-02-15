@@ -17,9 +17,9 @@ public class UserUtil {
      * @param user
      */
     public static void saveUserToSession(HttpSession session, User user) {
-       // AdminUtil.deleteAdminFromSession(session);
+        // AdminUtil.deleteAdminFromSession(session);
         session.setAttribute(USER, user);
-        session.setAttribute("userType",user.getCkind());
+        session.setAttribute("userType", user.getCkind());
     }
 
     /**
@@ -38,7 +38,11 @@ public class UserUtil {
      *
      * @param session
      */
-    public static void deleteUserFromSession(HttpSession session) {
+    public static Boolean deleteUserFromSession(HttpSession session) {
         session.removeAttribute(USER);
+        return true;
     }
+
+
+
 }
