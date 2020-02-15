@@ -1,32 +1,35 @@
 package steelhacks.covid19.covid19.Entity;
 
 
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import javax.persistence.*;
 
 
 @Entity
-@Table(name = "users")
+@Document("user")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(columnDefinition="BIGINT(20)")
+
+    @Field("BIGINT(20)")
     private Integer id;
 
-    @Column(columnDefinition="VARCHAR(32) NOT NULL")
+    @Field("VARCHAR(32) NOT NULL")
     private String email;
 
-    @Column(columnDefinition="VARCHAR(64) NOT NULL")
+    @Field("VARCHAR(64) NOT NULL")
     private String password;
 
-    @Column(columnDefinition="DOUBLE NOT NULL")
+    @Field("DOUBLE NOT NULL")
     private double longitude;
 
-    @Column(columnDefinition="DOUBLE NOT NULL")
+    @Field("DOUBLE NOT NULL")
     private Double latitude;
 
-    @Column(columnDefinition="INT NOT NULL'")
+    @Field("INT NOT NULL'")
     private Integer age;
 
 
