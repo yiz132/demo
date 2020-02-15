@@ -21,24 +21,24 @@ export class UsersService {
     const toAdd = JSON.stringify(user);
     const actionUrl = Constants.apiServer + '/service/user/register';
     return this.http.post(actionUrl, toAdd, {headers: this.headers})
-      .map((response: Response) => {
-        if (response && response.json()) {
-          return response.json() as User;
-        }
-      })
-      .catch(this.handleError);
+        .map((response: Response) => {
+          if (response && response.json()) {
+            return response.json() as User;
+          }
+        })
+        .catch(this.handleError);
   }
 
   public login = (user: User): Observable<User> => {
     const toAdd = JSON.stringify(user);
     const actionUrl = Constants.apiServer + '/service/user/login';
     return this.http.post(actionUrl, toAdd, {headers: this.headers})
-      .map((response: Response) => {
-        if (response && response.json()) {
-          return response.json() as User;
-        }
-      })
-      .catch(this.handleError);
+        .map((response: Response) => {
+          if (response && response.json()) {
+            return response.json() as User;
+          }
+        })
+        .catch(this.handleError);
   }
 
   private handleError(error: Response) {
@@ -49,6 +49,7 @@ export class UsersService {
   public getUser = (user: User): Observable<User> => {
     const actionUrl = Constants.apiServer + '/service/user/getUser/' + user.id;
     return this.http.get(actionUrl, {headers: this.headers})
-      .map((response: Response) => response.json() as User)
-      .catch(this.handleError);
+        .map((response: Response) => response.json() as User)
+        .catch(this.handleError);
   }
+}
