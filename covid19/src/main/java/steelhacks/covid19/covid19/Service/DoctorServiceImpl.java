@@ -4,20 +4,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import steelhacks.covid19.covid19.Dao.DoctorRepository;
+import steelhacks.covid19.covid19.Dao.UserRepository;
 import steelhacks.covid19.covid19.Entity.Doctor;
 import steelhacks.covid19.covid19.Entity.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class DoctorServiceImpl implements DoctorService{
     @Autowired
     private DoctorRepository doctorRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public List<User> getPatientsByDistance(Integer referenceDistance, Double longitude, Double latitude) {
-        List<User> users = 
-        return doctorRepository.getPatientsInRange();
+        List<User> users = userRepository.findAllUser();
+        List<User> res = new ArrayList<>();
+        for (User user : users) {
+            if (user.getStatus() == 0) continue;
+            if (getDistance(longitude,latitude,user.getLongitude(),user.getLatitude()) <= referenceDistance) {
+                res.add(user);
+            }
+        }
+        return res;
     }
 
     public Double getDistance(Double standardLongitude, Double standardLatitude, Double longitude, Double latitude){

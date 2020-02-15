@@ -20,11 +20,15 @@ public class DoctorController {
 
     @PostMapping(path="/register")
     public @ResponseBody
-    Doctor register(@RequestParam String email, @RequestParam String password){
+    Doctor register(@RequestParam String email, @RequestParam String password, @RequestParam String name, @RequestParam(required = false) Double longitude,
+                    @RequestParam(required = false) Double latitude){
+        if (doctorService.findDoctorByEmail(email) != null) return null;
         Doctor doctor = new Doctor();
         doctor.setEmail(email);
         doctor.setPassword(password);
-
+        doctor.setName(name);
+        if (longitude != null) doctor.setLongitude(longitude);
+        if (latitude != null) doctor.setLatitude(latitude);
         doctorService.save(doctor);
         return doctor;
     }
@@ -38,6 +42,7 @@ public class DoctorController {
         return doctorService.findDoctorByEmail(email);
     }
 
+    @PostMapping(path="/getPatientsInDistance")
     public List<User> getPatientsByDistance(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
         Integer referenceDistance = Integer.parseInt(request.getParameter("distance"));

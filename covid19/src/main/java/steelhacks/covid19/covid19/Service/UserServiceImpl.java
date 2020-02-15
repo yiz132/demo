@@ -49,16 +49,17 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public List<User> getPatientsByDistance(Integer referenceDistance, String email, Double longitude, Double latitude) {
-        List l = new ArrayList<User>();
-        for(User user: userDao.findAllUser()){
-            if(user.getEmail().equals(email)) continue;
+        List<User> users = userDao.findAllUser();
+        List<User> l = new ArrayList<>();
+        for(User user: users){
+            if(user.getStatus() == 0) continue;
             if(getDistance(longitude, latitude, user.getLongitude(), user.getLatitude()) <= referenceDistance) l.add(user);
         }
         return l;
     }
 
     @Transactional
-    public  Double getDistance(Double standardLongitude, Double standardLatitude, Double longitude, Double latitude){
+    public Double getDistance(Double standardLongitude, Double standardLatitude, Double longitude, Double latitude){
         double STATUTE_MILES_PER_NAUTICAL_MILE = 1.15077945;
         double lat1 = Math.toRadians(standardLatitude);
         double lon1 = Math.toRadians(standardLongitude);
